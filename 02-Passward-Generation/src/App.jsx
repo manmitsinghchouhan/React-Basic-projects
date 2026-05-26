@@ -8,7 +8,7 @@ function App() {
   const [charAllowed, setCharAllowed] = useState(false);
   const [password, setPassword] = useState("");
 
-  const myref = useRef(null)
+  const myref = useRef(null);
 
   const passwordGenerator = useCallback(() => {
     let pass = "";
@@ -23,18 +23,17 @@ function App() {
       pass += str[char];
     }
     setPassword(pass);
-
-  },[length,numberAllowed,charAllowed,setPassword]);
+  }, [length, numberAllowed, charAllowed, setPassword]);
 
   const copyPasswordToClipboard = useCallback(() => {
     myref.current?.select();
     // myref.current?.setSelectionRange(0, 999);
-    window.navigator.clipboard.writeText(password)
-  }, [password])
+    window.navigator.clipboard.writeText(password);
+  }, [password]);
 
-  useEffect (()=>{
-    passwordGenerator()
-  } , [length,numberAllowed,charAllowed,passwordGenerator ])
+  useEffect(() => {
+    passwordGenerator();
+  }, [length, numberAllowed, charAllowed, passwordGenerator]);
 
   return (
     <>
@@ -44,7 +43,7 @@ function App() {
           <input
             type="text"
             value={password}
-            className="outline-none w-full py-1 px-3"
+            className="outline-none w-full bg-white py-1 px-3"
             placeholder="Password"
             readOnly
             ref={myref}
@@ -64,7 +63,7 @@ function App() {
               max={30}
               value={length}
               className="cursor-pointer"
-              onChange={(prev)=> setLength(prev.target.value)}
+              onChange={(prev) => setLength(prev.target.value)}
             />
             <label>Length: {length}</label>
           </div>
